@@ -5,6 +5,7 @@ using Azure_IoT_Device_SDK_Explorer.Services;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
+using Microsoft.Azure.Devices.Client;
 
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
@@ -14,6 +15,7 @@ namespace Azure_IoT_Device_SDK_Explorer
     public sealed partial class App : Application
     {
         private Lazy<ActivationService> _activationService;
+        public static DeviceClient IoTHubClient = null;
 
         private ActivationService ActivationService
         {
@@ -25,7 +27,7 @@ namespace Azure_IoT_Device_SDK_Explorer
             InitializeComponent();
 
             // TODO WTS: Add your app in the app center and set your secret here. More at https://docs.microsoft.com/en-us/appcenter/sdk/getting-started/uwp
-            AppCenter.Start("{Your App Secret}", typeof(Analytics), typeof(Crashes));
+            AppCenter.Start("3ba53d16-f11a-4880-9ebd-60361525639b", typeof(Analytics), typeof(Crashes));
 
             // Deferred execution until used. Check https://msdn.microsoft.com/library/dd642331(v=vs.110).aspx for further info on Lazy<T> class.
             _activationService = new Lazy<ActivationService>(CreateActivationService);

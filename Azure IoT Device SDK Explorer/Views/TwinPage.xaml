@@ -1,7 +1,8 @@
 ﻿<Page
-    x:Class="Azure_IoT_Device_SDK_Explorer.Views.ReceivePage"
+    x:Class="Azure_IoT_Device_SDK_Explorer.Views.TwinPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Azure_IoT_Device_SDK_Explorer.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Style="{StaticResource PageStyle}"
@@ -12,7 +13,8 @@
         Margin="{StaticResource MediumLeftRightMargin}">
         <Grid
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <TextBox x:Name="tbOutput" TextWrapping="Wrap" TextChanged="TextBox_TextChanged" Margin="6" Text="[Method calls from the service as well as Cloud-to-Device messages will be displayed here]"/>
+            <TextBlock FontSize="40" Foreground="Orange" Text="TBD - saving this one for the sequel ..." HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Grid>
     </Grid>
 </Page>
+

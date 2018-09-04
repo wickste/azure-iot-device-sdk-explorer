@@ -5,14 +5,52 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Style="{StaticResource PageStyle}"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    NavigationCacheMode="Required">
     <Grid
         x:Name="ContentArea"
         Margin="{StaticResource MediumLeftRightMargin}">
         <Grid
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
-                Place your content here.-->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" MaxHeight="50"/>
+                <RowDefinition Height="*" MaxHeight="50"/>
+                <RowDefinition Height="*" MaxHeight="50"/>
+                <RowDefinition Height="*" MaxHeight="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Border BorderBrush="{ThemeResource SystemControlForegroundAccentBrush}" BorderThickness="3" Grid.Row="0" Grid.RowSpan="4" Grid.Column="2">
+                <StackPanel Margin="3">
+                    <RadioButton x:Name="rbWell" GroupName="rbMessageType" Content="Well-Formed" IsChecked="True"/>
+                    <RadioButton x:Name="rbRndBody" GroupName="rbMessageType" Content="Random Body"/>
+                    <RadioButton x:Name="rbRndProp" GroupName="rbMessageType" Content="Random Properties"/>
+                    <RadioButton x:Name="rbRndBodyProp" GroupName="rbMessageType" Content="Random Body + Properties"/>
+                </StackPanel>
+            </Border>
+
+            <Button x:Name="btnSingle" Grid.Row="0" Grid.Column="1" Content="Send Single Message to Cloud" HorizontalAlignment="Center" Click="btnSingle_Click" />
+
+            <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Right" Margin="3,0,3,0" >
+                <TextBlock Text="Number of Messages: " VerticalAlignment="Center" Margin="0,0,6,0"/>
+                <TextBox x:Name="tbBatch" Width="70" Height="12" Text="3"/>
+            </StackPanel>
+            <Button x:Name="btnBatch" Grid.Row="1" Grid.Column="1" Content="Send Batch of Messages to Cloud" HorizontalAlignment="Center" Click="btnBatch_Click" />
+
+            <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Right" Margin="3,0,3,0">
+                <TextBlock Text="Interval(sec):" VerticalAlignment="Center" Margin="0,0,6,0"/>
+                <TextBox x:Name="tbInterval" Text="5" Width="70" Height="12"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Margin="6">
+                <Button x:Name="btnPeriod" Content="Send Messages to Cloud periodically" Click="btnPeriod_Click"/>
+                <Button x:Name="btnStop" Content="Stop" IsEnabled="False" Margin="6,0,0,0" Click="btnStop_Click"/>
+            </StackPanel>
+            <Button Grid.Row="3" Grid.Column="1" Content="Upload to Blobstorage" HorizontalAlignment="Center" Click="btnUpload_Click"/>
+            <TextBox x:Name="tbOutput" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,0,6" TextWrapping="Wrap" TextChanged="TextBox_TextChanged" ScrollViewer.VerticalScrollBarVisibility="Auto" />
         </Grid>
     </Grid>
 </Page>

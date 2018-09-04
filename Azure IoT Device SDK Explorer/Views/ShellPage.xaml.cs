@@ -6,8 +6,9 @@ using System.Runtime.CompilerServices;
 
 using Azure_IoT_Device_SDK_Explorer.Helpers;
 using Azure_IoT_Device_SDK_Explorer.Services;
-
+using Windows.Foundation;
 using Windows.Foundation.Metadata;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -31,6 +32,9 @@ namespace Azure_IoT_Device_SDK_Explorer.Views
             HideNavViewBackButton();
             DataContext = this;
             Initialize();
+
+            ApplicationView.PreferredLaunchViewSize = new Size(1024, 480);
+            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
         }
 
         private void Initialize()

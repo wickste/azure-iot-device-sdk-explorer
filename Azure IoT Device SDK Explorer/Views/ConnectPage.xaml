@@ -5,14 +5,43 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Style="{StaticResource PageStyle}"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    NavigationCacheMode="Required">
     <Grid
         x:Name="ContentArea"
         Margin="{StaticResource MediumLeftRightMargin}">
-        <Grid
-            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
-                Place your content here.-->
+        <Grid Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Border x:Name="statusBorder" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" BorderBrush="Red" BorderThickness="3" Padding="2" Margin="0,0,0,6">
+                <Grid>
+                    <TextBlock x:Name="tbDeviceName" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" Text="DeviceName = Unknown" FontWeight="Bold"/>
+                    <TextBlock x:Name="tbConnectionStatus" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Text="ConnectionStatus = Unknown" FontWeight="Bold"/>
+                    <TextBlock x:Name="tbConnectionStatusChangedReason" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" Text="ChangedReason = Unknown" FontWeight="Bold"/>
+                </Grid>
+            </Border>
+
+            <TextBox x:Name="tbConnectionString" Grid.Row="1" Grid.Column="0" PlaceholderText="[enter device connection string]" TextWrapping="Wrap"/>
+            <StackPanel Grid.Row="1" Grid.Column="1" Margin="6">
+                <RadioButton x:Name="rbMqtt" GroupName="transportType" Content="MQTT" IsChecked="True"/>
+                <RadioButton x:Name="rbMqttTcp" GroupName="transportType" Content="MQTT_TCP_ONLY"/>
+                <RadioButton x:Name="rbMqttWeb" GroupName="transportType" Content="MQTT_WEBSOCKET_ONLY"/>
+                <RadioButton x:Name="rbAmqp" GroupName="transportType" Content="AMQP"/>
+                <RadioButton x:Name="rbAmqpTcp" GroupName="transportType" Content="AMQP_TCP_ONLY"/>
+                <RadioButton x:Name="rbAmqpWeb" GroupName="transportType" Content="AMQP_WEBSOCKET_ONLY"/>
+                <RadioButton x:Name="rbHttp1" GroupName="transportType" Content="HTTP1"/>
+            </StackPanel>
+
+            <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Content="Create Device Client From Connection String" Click="btnCreate_Click"/>
+
         </Grid>
     </Grid>
 </Page>
