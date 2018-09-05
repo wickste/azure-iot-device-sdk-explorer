@@ -220,10 +220,12 @@ namespace Azure_IoT_Device_SDK_Explorer.Views
             try
             {
                 await App.IoTHubClient.UploadToBlobAsync(file.Name, stream.AsStream());
+                tbOutput.Text += "\r\n\r\nFile uploaded to blob storage: " + file.Name;
             }
             catch (Exception exc)
             {
                 tbOutput.Text = exc.ToString();
+                tbOutput.Text += "\r\n\r\nMake sure you have configured your IoT Hub for file upload:\r\nhttps://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-configure-file-upload";
             }
         }
     }

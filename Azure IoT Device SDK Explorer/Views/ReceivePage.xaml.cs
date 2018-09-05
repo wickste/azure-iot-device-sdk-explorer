@@ -3,6 +3,7 @@ using Microsoft.Azure.Devices.Shared;
 using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
@@ -21,10 +22,26 @@ namespace Azure_IoT_Device_SDK_Explorer.Views
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+            if (App.IoTHubClient == null) return;
+
             tbOutput.Text += "\r\n\r\n";
             await App.IoTHubClient.SetMethodDefaultHandlerAsync(MethodDefaultHandler, null);
             await App.IoTHubClient.SetMethodHandlerAsync("foo", MethodHandler, null);
             await App.IoTHubClient.SetDesiredPropertyUpdateCallbackAsync(DesiredPropertyUpdateCallback, null);
+
+            while (true)
+            {
+                Message message = await App.IoTHubClient.ReceiveAsync();
+                if (message != null)
+                {
+                    tbOutput.Text += "\r\n\r\nData: " + Encoding.ASCII.GetString(message.GetBytes());
+                    foreach (var property in message.Properties)
+                    {
+                        tbOutput.Text += string.Format("\r\n{0} = {1}", property.Key, property.Value);
+                    }
+                    await App.IoTHubClient.CompleteAsync(message);
+                }
+            }
         }
 
         private async Task DesiredPropertyUpdateCallback(TwinCollection collection, object userContext)

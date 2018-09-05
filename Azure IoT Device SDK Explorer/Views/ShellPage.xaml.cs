@@ -33,7 +33,7 @@ namespace Azure_IoT_Device_SDK_Explorer.Views
             DataContext = this;
             Initialize();
 
-            ApplicationView.PreferredLaunchViewSize = new Size(1024, 480);
+            ApplicationView.PreferredLaunchViewSize = new Size(1152, 480);
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
         }
 

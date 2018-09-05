@@ -6,6 +6,7 @@ using Microsoft.Azure.Devices.Shared;
 using Windows.Storage;
 using Windows.UI;
 using Windows.UI.Core;
+using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
@@ -71,9 +72,17 @@ namespace Azure_IoT_Device_SDK_Explorer.Views
                 transportType = TransportType.Http1;
             }
 
-            App.IoTHubClient = DeviceClient.CreateFromConnectionString(tbConnectionString.Text, transportType);
-            App.IoTHubClient.SetConnectionStatusChangesHandler(new ConnectionStatusChangesHandler(this.ConnectionStatusHandler));
-            await App.IoTHubClient.OpenAsync();
+            try
+            {
+                App.IoTHubClient = DeviceClient.CreateFromConnectionString(tbConnectionString.Text, transportType);
+                App.IoTHubClient.SetConnectionStatusChangesHandler(new ConnectionStatusChangesHandler(this.ConnectionStatusHandler));
+                await App.IoTHubClient.OpenAsync();
+            }
+            catch
+            {
+                MessageDialog dlg = new MessageDialog("Make sure you enter a valid device connection string.", "DeviceClient creation failed");
+                await dlg.ShowAsync();
+            }
         }
         private async void ConnectionStatusHandler(ConnectionStatus status, ConnectionStatusChangeReason reason)
         {
