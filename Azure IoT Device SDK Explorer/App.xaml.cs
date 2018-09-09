@@ -25,8 +25,7 @@ namespace Azure_IoT_Device_SDK_Explorer
         public App()
         {
             InitializeComponent();
-
-            // TODO WTS: Add your app in the app center and set your secret here. More at https://docs.microsoft.com/en-us/appcenter/sdk/getting-started/uwp
+           
             AppCenter.Start("3ba53d16-f11a-4880-9ebd-60361525639b", typeof(Analytics), typeof(Crashes));
 
             // Deferred execution until used. Check https://msdn.microsoft.com/library/dd642331(v=vs.110).aspx for further info on Lazy<T> class.

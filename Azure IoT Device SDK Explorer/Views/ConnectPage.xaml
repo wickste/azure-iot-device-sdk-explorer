@@ -29,7 +29,7 @@
                 </Grid>
             </Border>
 
-            <TextBox x:Name="tbConnectionString" Grid.Row="1" Grid.Column="0" PlaceholderText="[enter device connection string]" TextWrapping="Wrap"/>
+            <TextBox x:Name="tbConnectionString" Grid.Row="1" Grid.Column="0" PlaceholderText="[enter device connection string]" FontStyle="Italic" TextWrapping="Wrap"/>
             <StackPanel Grid.Row="1" Grid.Column="1" Margin="6">
                 <RadioButton x:Name="rbMqtt" GroupName="transportType" Content="MQTT" IsChecked="True"/>
                 <RadioButton x:Name="rbMqttTcp" GroupName="transportType" Content="MQTT_TCP_ONLY"/>
@@ -40,7 +40,7 @@
                 <RadioButton x:Name="rbHttp1" GroupName="transportType" Content="HTTP1"/>
             </StackPanel>
 
-            <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Content="Create Device Client From Connection String" Click="btnCreate_Click"/>
+            <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Content="Create IoT Hub Client from Connection String" Click="btnCreate_Click"/>
 
         </Grid>
     </Grid>

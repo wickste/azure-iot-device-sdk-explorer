@@ -43,7 +43,12 @@ namespace Azure_IoT_Device_SDK_Explorer.Views
         }
 
         private void SendSingleMessage()
-        { 
+        {
+            if (App.IoTHubClient == null)
+            {
+                tbOutput.Text += "\r\nDevice not connected to Azure IoT Hub.";
+                return;
+            }
             Message message = this.CreateMessage();
             try
             {
@@ -76,6 +81,12 @@ namespace Azure_IoT_Device_SDK_Explorer.Views
 
         private void btnBatch_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
+            if (App.IoTHubClient == null)
+            {
+                tbOutput.Text += "\r\nDevice not connected to Azure IoT Hub.";
+                return;
+            }
+
             List<Message> messages = new List<Message>();
             int numberOfMessages = 0;
             if (int.TryParse(tbBatch.Text, out numberOfMessages))
@@ -115,6 +126,12 @@ namespace Azure_IoT_Device_SDK_Explorer.Views
 
         private void btnPeriod_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
+            if (App.IoTHubClient == null)
+            {
+                tbOutput.Text += "\r\nDevice not connected to Azure IoT Hub.";
+                return;
+            }
+
             btnStop.IsEnabled = true;
             btnSingle.IsEnabled = false;
             btnBatch.IsEnabled = false;
@@ -213,6 +230,12 @@ namespace Azure_IoT_Device_SDK_Explorer.Views
 
         private async void btnUpload_Click(object sender, RoutedEventArgs e)
         {
+            if (App.IoTHubClient == null)
+            {
+                tbOutput.Text += "\r\nDevice not connected to Azure IoT Hub.";
+                return;
+            }
+
             FileOpenPicker picker = new FileOpenPicker();
             picker.FileTypeFilter.Add("*");
             StorageFile file =  await picker.PickSingleFileAsync();
