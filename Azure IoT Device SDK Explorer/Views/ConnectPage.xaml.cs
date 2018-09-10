@@ -46,6 +46,14 @@ namespace Azure_IoT_Device_SDK_Explorer.Views
 
         private async void btnCreate_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
+            statusBorder.BorderBrush = new SolidColorBrush(Colors.Red);
+            if (App.IoTHubClient != null)
+            {
+                await App.IoTHubClient.CloseAsync();
+                App.IoTHubClient.Dispose();
+                App.IoTHubClient = null;
+            }
+
             TransportType transportType = TransportType.Mqtt;
             if (rbAmqp.IsChecked == true)
             {
