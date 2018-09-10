@@ -97,7 +97,7 @@ namespace Azure_IoT_Device_SDK_Explorer.Views
                     messages.Add(message);
                     string data = Encoding.UTF8.GetString(message.GetBytes());
                     DateTime creationTime = DateTime.Now;
-                    tbOutput.Text += "Message sent at " + $"{creationTime}>\r\nData:[{data}]";
+                    tbOutput.Text += "\r\nMessage sent at " + $"{creationTime}>\r\nData:[{data}]";
                     if (message.Properties.Count > 0)
                     {
                         tbOutput.Text += "\r\nProperties:\r\n";

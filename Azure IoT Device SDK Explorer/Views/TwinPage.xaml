@@ -13,7 +13,21 @@
         Margin="{StaticResource MediumLeftRightMargin}">
         <Grid
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <TextBlock FontSize="40" Foreground="Orange" Text="TBD - saving this one for the sequel ..." HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Text="Device Twin Properties"/>
+            <TextBox x:Name="tbTwin" Grid.Row="2" Grid.Column="0" IsReadOnly="True" TextWrapping="Wrap" Margin="6"/>
+            <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
+                <TextBlock  Text="Author new reported property (json)" VerticalAlignment="Center" Margin="3"/>
+                <Button Content="Update Device Twin" Click="btnUpdate_Click" Margin="3"/>
+            </StackPanel>
+            <TextBox x:Name="tbNew" Grid.Row="1" Grid.Column="1" TextWrapping="Wrap" Margin="6"/>
         </Grid>
     </Grid>
 </Page>
